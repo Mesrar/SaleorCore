@@ -9,4 +9,4 @@ data:
 
   # todo: need to understand how to change that with Ansible for full deployment.
   # A list of strings representing host, or domain names of client applications.
-  ALLOWED_CLIENT_HOSTS: "10.0.0.10"
+  ALLOWED_HOSTS: "10.0.0.10"
