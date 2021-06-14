@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django
+  namespace: saleor
+  labels:
+    app: saleor
+    component: server
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: saleor
+      component: server
+  template:
+    metadata:
+      labels:
+        app: saleor
+        component: server
+    spec:
+      containers:
+        - name: django
+          image: ariellahiany/saleor:latest
+          imagePullPolicy: Always
+          ports:
+            - name: django
+              protocol: TCP
+              containerPort: 8000
+          env:
+            - name: DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: DEBUG
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: django
+                  key: SECRET_KEY
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_PASSWORD
+          args: ["gunicorn", "--bind", ":8000", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker" ,"saleor.asgi:application"]
+#          volumeMounts:
+#            - name: config
+#              mountPath: /config
+#              readOnly: true
+#      volumes:
+#        - name: config
+#          configMap:
+#            name: django

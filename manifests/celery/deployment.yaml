@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery
+  namespace: saleor
+  labels:
+    app: saleor
+    component: worker
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: saleor
+      component: worker
+  template:
+    metadata:
+      labels:
+        app: saleor
+        component: worker
+    spec:
+      containers:
+        - name: celery
+          image: ariellahiany/saleor:latest
+          imagePullPolicy: Always
+          # todo: need to give password and username for Redis.
+          env:
+            - name: DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: DEBUG
+          # todo: only one worker per pod.
+          # todo: maybe need the Postgres username and password
+          args: ["celery", "-A", "saleor", "--app=saleor.celery:app", "worker", "--loglevel=info"]
