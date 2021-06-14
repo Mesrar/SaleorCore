@@ -31,6 +31,20 @@ spec:
                 configMapKeyRef:
                   name: django
                   key: DEBUG
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_PASSWORD
           # todo: only one worker per pod.
-          # todo: maybe need the Postgres username and password
           args: ["celery", "-A", "saleor", "--app=saleor.celery:app", "worker", "--loglevel=info"]

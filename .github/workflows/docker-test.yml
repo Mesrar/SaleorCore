@@ -5,8 +5,10 @@ on:
     branches:
       - master
     paths-ignore:
-      - "*/README.md"
+      - "*.md"
       - ".github/workflows/*"
+      - "/manifests"
+      - "/playbooks"
 
 jobs:
   test:
