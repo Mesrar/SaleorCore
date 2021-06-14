@@ -163,3 +163,6 @@ media
 
 # Node modules
 node_modules
+
+# Ansible playbooks
+/playbooks/
