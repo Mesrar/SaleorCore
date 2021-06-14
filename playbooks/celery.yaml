@@ -1,18 +1,17 @@
-tasks:
-  - name: Apply Saleor namespace manifest to the cluster.
-    community.kubernetes.k8s:
-      state: present
-      src: /home/arik/kubernetes/platform/resources/manifests/namespaces/saleor.yaml
+- name: Apply Saleor namespace manifest to the cluster.
+  community.kubernetes.k8s:
+    state: present
+    src: /home/arik/kubernetes/platform/resources/manifests/namespaces/saleor.yaml
 
-  - name: Apply Postgres database secret manifest to the cluster.
-    community.kubernetes.k8s:
-      state: present
-      src: /home/arik/kubernetes/platform/resources/manifests/secrets/postgres.yaml
+- name: Apply Postgres database secret manifest to the cluster.
+  community.kubernetes.k8s:
+    state: present
+    src: /home/arik/kubernetes/platform/resources/manifests/secrets/postgres.yaml
 
-  - name: Apply Celery workers deployment manifest to the cluster.
-    community.kubernetes.k8s:
-      state: present
-      src: /home/arik/kubernetes/platform/saleor/manifests/celery/deployment.yaml
+- name: Apply Celery workers deployment manifest to the cluster.
+  community.kubernetes.k8s:
+    state: present
+    src: /home/arik/kubernetes/platform/saleor/manifests/celery/deployment.yaml
 
 #  - name: Apply Celery workers horizontal pod autoscaler manifest to the cluster.
 #    community.kubernetes.k8s:
