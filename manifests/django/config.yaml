@@ -16,3 +16,9 @@ data:
 
   # Default broker URL.
   CELERY_BROKER_URL: redis://redis.redis:6379/
+
+  # Default Saleor Dashboard URL.
+  DASHBOARD_URL: http://dashboard:9000/
+
+#  # Default Saleor Storefront URL.
+#  STOREFRONT_URL: http://storefront:3000/

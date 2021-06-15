@@ -49,6 +49,11 @@ spec:
                 configMapKeyRef:
                   name: django
                   key: CELERY_BROKER_URL
+            - name: DASHBOARD_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: DASHBOARD_URL
             - name: SECRET_KEY
               valueFrom:
                 secretKeyRef:
