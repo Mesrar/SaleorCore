@@ -31,16 +31,21 @@ spec:
                 configMapKeyRef:
                   name: django
                   key: DEBUG
-            - name: ALLOWED_CLIENT_HOSTS
+            - name: ALLOWED_HOSTS
               valueFrom:
                 configMapKeyRef:
                   name: django
-                  key: ALLOWED_CLIENT_HOSTS
+                  key: ALLOWED_HOSTS
             - name: CELERY_BROKER_URL
               valueFrom:
                 configMapKeyRef:
                   name: django
                   key: CELERY_BROKER_URL
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: django
+                  key: SECRET_KEY
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
