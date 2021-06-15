@@ -51,4 +51,4 @@ spec:
                 secretKeyRef:
                   name: postgres
                   key: POSTGRES_PASSWORD
-          args: ["celery", "-A", "saleor", "--app=saleor.celery:app", "worker", "--loglevel=info"]
+          args: ["celery", "-A", "saleor", "--app=saleor.celeryconf:app", "worker", "--loglevel=info"]
