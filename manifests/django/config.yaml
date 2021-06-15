@@ -11,5 +11,8 @@ data:
   # A list of strings representing host, or domain names of client applications.
   ALLOWED_HOSTS: 10.0.0.10
 
+  # A list of strings representing host, or domain names of client applications that use Saleor as a backend.
+  ALLOWED_CLIENT_HOSTS: 10.0.0.10,localhost,127.0.0.1
+
   # Default broker URL.
   CELERY_BROKER_URL: redis://redis.redis:6379/
