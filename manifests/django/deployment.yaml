@@ -39,6 +39,11 @@ spec:
                 configMapKeyRef:
                   name: django
                   key: ALLOWED_HOSTS
+            - name: CELERY_BROKER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: CELERY_BROKER_URL
             - name: SECRET_KEY
               valueFrom:
                 secretKeyRef:

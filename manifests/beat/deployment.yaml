@@ -31,6 +31,11 @@ spec:
                 configMapKeyRef:
                   name: django
                   key: DEBUG
+            - name: CELERY_BROKER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: CELERY_BROKER_URL
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
