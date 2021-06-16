@@ -72,10 +72,10 @@ spec:
                   name: postgres
                   key: POSTGRES_PASSWORD
           args: ["celery", "-A", "saleor", "beat"]
-#          volumeMounts:
-#            - name: storage
-#              mountPath: /saleor
-#      volumes:
-#        - name: storage
-#          persistentVolumeClaim:
-#            claimName: beat
+          volumeMounts:
+            - name: storage
+              mountPath: /saleor/saleor
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: beat
