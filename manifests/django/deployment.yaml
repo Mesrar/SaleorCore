@@ -23,7 +23,10 @@ spec:
       initContainers:
         - name: init
           image: ariellahiany/saleor:latest
-          command: ["python", "manage.py", "migrate"]
+          # todo: need to add the env secretes to the init container, and check if it is better to have couple of it for collectstatic and migrate, or on the same one.
+          command: ["python", "-c"]
+          args: ["print('ariel'); print('----------------------------------- dragon ball ------------'); import os"]
+#          command: ["python", "manage.py", "migrate"]
 #            - python manage.py migrate
 #            - python manage.py collectstatic --noinput
       containers:
