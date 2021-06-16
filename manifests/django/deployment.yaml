@@ -23,10 +23,9 @@ spec:
       initContainers:
         - name: init
           image: ariellahiany/saleor:latest
-          command:
-            - python manage.py makemigrations
-            - python manage.py migrate
-            - python manage.py collectstatic --noinput
+          command: ['sh', '-c', 'python', 'print("this is my init!")']
+#            - python manage.py migrate
+#            - python manage.py collectstatic --noinput
       containers:
         - name: django
           image: ariellahiany/saleor:latest
