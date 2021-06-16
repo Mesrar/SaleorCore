@@ -23,7 +23,7 @@ spec:
       initContainers:
         - name: init
           image: ariellahiany/saleor:latest
-          command: ['sh', '-c', 'python', 'print("this is my init!")']
+          command: ["python", "print('this is my init container')"]
 #            - python manage.py migrate
 #            - python manage.py collectstatic --noinput
       containers:
@@ -80,9 +80,7 @@ spec:
                 secretKeyRef:
                   name: postgres
                   key: POSTGRES_PASSWORD
-          args:
-            - python manage.py runserver 0.0.0.0:8000
-#          args: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+          args: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 #          args: ["gunicorn", "--bind", ":8000", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker" ,"saleor.asgi:application"]
 # todo: need to create that with NFS(?)
 #          volumeMounts:
