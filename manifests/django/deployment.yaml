@@ -20,6 +20,13 @@ spec:
         app: saleor
         component: server
     spec:
+      initContainers:
+        - name: init
+          image: ariellahiany/saleor:latest
+          command:
+            - python manage.py makemigrations
+            - python manage.py migrate
+            - python manage.py collectstatic --noinput
       containers:
         - name: django
           image: ariellahiany/saleor:latest
@@ -74,19 +81,15 @@ spec:
                 secretKeyRef:
                   name: postgres
                   key: POSTGRES_PASSWORD
-          args: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+          args:
+            - python manage.py runserver 0.0.0.0:8000
+#          args: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 #          args: ["gunicorn", "--bind", ":8000", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker" ,"saleor.asgi:application"]
-          volumeMounts:
-            - name: storage
-              mountPath: /saleor
-              # todo: need to fix that for sharing with Celery and Beat.
+# todo: need to create that with NFS(?)
+#          volumeMounts:
 #            - name: media
 #              mountPath: /saleor/media
-      volumes:
-        - name: storage
-          persistentVolumeClaim:
-            claimName: django
-            # todo: need to fix that for sharing with Celery and Beat.
+#      volumes:
 #        - name: media
 #          persistentVolumeClaim:
 #            claimName: media

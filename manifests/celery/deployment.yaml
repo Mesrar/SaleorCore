@@ -72,10 +72,11 @@ spec:
                   name: postgres
                   key: POSTGRES_PASSWORD
           args: ["celery", "-A", "saleor", "--app=saleor.celeryconf:app", "worker", "--loglevel=info"]
-          volumeMounts:
-            - name: storage
-              mountPath: /saleor/saleor
-      volumes:
-        - name: storage
-          persistentVolumeClaim:
-            claimName: celery
+# todo: need to create that with NFS(?)
+#          volumeMounts:
+#            - name: media
+#              mountPath: /saleor/media
+#      volumes:
+#        - name: media
+#          persistentVolumeClaim:
+#            claimName: celery
