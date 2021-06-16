@@ -23,7 +23,7 @@ spec:
       initContainers:
         - name: init
           image: ariellahiany/saleor:latest
-          command: ["print('this is my init container')"]
+          command: ["python", "-c", "manage.py", "migrate"]
 #            - python manage.py migrate
 #            - python manage.py collectstatic --noinput
       containers:
