@@ -1,0 +1,28 @@
+# todo: storage. need to be shared with Celery and Beat.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: django
+  namespace: saleor
+  labels:
+    app: saleor
+    component: server
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+#---
+# todo: finish and share with Celery and Beat
+#apiVersion: v1
+#kind: PersistentVolume
+#metadata:
+#  name: media
+#  namespace: saleor
+#  labels:
+#    app: saleor
+#spec:
+#  accessModes:
+#    - ReadWriteMany
+

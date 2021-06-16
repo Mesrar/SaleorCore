@@ -3,6 +3,11 @@
     state: present
     src: /home/arik/kubernetes/platform/resources/manifests/namespaces/saleor.yaml
 
+- name: Apply Beat schedulers volume manifest to the cluster.
+  community.kubernetes.k8s:
+    state: present
+    src: /home/arik/kubernetes/platform/saleor/manifests/beat/volume.yaml
+
 - name: Apply Postgres database secret manifest to the cluster.
   community.kubernetes.k8s:
     state: present

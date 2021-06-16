@@ -76,3 +76,17 @@ spec:
                   key: POSTGRES_PASSWORD
           args: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 #          args: ["gunicorn", "--bind", ":8000", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker" ,"saleor.asgi:application"]
+          volumeMounts:
+            - name: storage
+              mountPath: /saleor
+              # todo: need to fix that for sharing with Celery and Beat.
+#            - name: media
+#              mountPath: /saleor/media
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: django
+            # todo: need to fix that for sharing with Celery and Beat.
+#        - name: media
+#          persistentVolumeClaim:
+#            claimName: media
