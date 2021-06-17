@@ -21,10 +21,9 @@ spec:
         component: server
     spec:
       initContainers:
-        - name: database-initializer
+        - name: database
           image: ariellahiany/saleor:latest
           imagePullPolicy: Always
-          # todo: need to add the env secretes to the init container, and check if it is better to have couple of it for collectstatic and migrate, or on the same one.
           command: ["python", "manage.py", "migrate"]
           env:
             - name: DEBUG
@@ -62,7 +61,7 @@ spec:
                 secretKeyRef:
                   name: postgres
                   key: POSTGRES_PASSWORD
-        - name: static-initializer
+        - name: static
           image: ariellahiany/saleor:latest
           imagePullPolicy: Always
           command: ["python", "manage.py", "collectstatic", "--noinput"]
