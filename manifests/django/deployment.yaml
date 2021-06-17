@@ -21,14 +21,67 @@ spec:
         component: server
     spec:
       initContainers:
-        - name: init
+        - name: database-initializer
           image: ariellahiany/saleor:latest
+          imagePullPolicy: Always
           # todo: need to add the env secretes to the init container, and check if it is better to have couple of it for collectstatic and migrate, or on the same one.
-          command: ["python", "-c"]
-          args: ["print('ariel'); print('----------------------------------- dragon ball ------------'); import os"]
-#          command: ["python", "manage.py", "migrate"]
-#            - python manage.py migrate
-#            - python manage.py collectstatic --noinput
+          command: ["python", "manage.py", "migrate"]
+          env:
+            - name: DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: DEBUG
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: django
+                  key: SECRET_KEY
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_PASSWORD
+        - name: static-initializer
+          image: ariellahiany/saleor:latest
+          imagePullPolicy: Always
+          command: ["python", "manage.py", "collectstatic", "--noinput"]
+          env:
+            - name: DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: DEBUG
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: django
+                  key: SECRET_KEY
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_PASSWORD
       containers:
         - name: django
           image: ariellahiany/saleor:latest
