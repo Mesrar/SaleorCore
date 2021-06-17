@@ -32,6 +32,16 @@ spec:
                 configMapKeyRef:
                   name: django
                   key: DEBUG
+            - name: ALLOWED_HOSTS
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: ALLOWED_HOSTS
+            - name: ALLOWED_CLIENT_HOSTS
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: ALLOWED_CLIENT_HOSTS
             - name: SECRET_KEY
               valueFrom:
                 secretKeyRef:
@@ -62,6 +72,16 @@ spec:
                 configMapKeyRef:
                   name: django
                   key: DEBUG
+            - name: ALLOWED_HOSTS
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: ALLOWED_HOSTS
+            - name: ALLOWED_CLIENT_HOSTS
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: ALLOWED_CLIENT_HOSTS
             - name: SECRET_KEY
               valueFrom:
                 secretKeyRef:
