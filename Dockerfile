@@ -13,8 +13,8 @@ COPY requirements_dev.txt /saleor/
 WORKDIR /saleor
 RUN pip install -r requirements_dev.txt
 
-# Sets python:slim as the final image.
-FROM python:slim
+# Sets python:slim as the release image.
+FROM python:slim as release
 
 # Defines new group and user for security reasons.
 RUN groupadd -r saleor && useradd -r -g saleor saleor
