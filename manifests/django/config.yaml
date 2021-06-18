@@ -9,7 +9,7 @@ data:
 
   # todo: need to understand how to change that with Ansible for full deployment.
   # A list of strings representing host, or domain names of client applications.
-  ALLOWED_HOSTS: 10.0.0.10,django,10.152.183.80
+  ALLOWED_HOSTS: 10.0.0.10,django
 
   # A list of strings representing host, or domain names of client applications that use Saleor as a backend.
   ALLOWED_CLIENT_HOSTS: 10.0.0.10,localhost,127.0.0.1
