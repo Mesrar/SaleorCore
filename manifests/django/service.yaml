@@ -7,8 +7,8 @@ metadata:
     app: saleor
     component: server
 spec:
-  # todo: need to change to ClusterIP and get to the service from Ingress.
-  type: NodePort
+  type: ClusterIP
+  clusterIP: 10.152.183.80
   selector:
     app: saleor
     component: server
