@@ -63,8 +63,8 @@ RUN SECRET_KEY=dummy STATIC_URL=${STATIC_URL} python3 manage.py collectstatic --
 # Ensures that Python output will be sent to the terminal.
 ENV PYTHONUNBUFFERED 1
 
-# Expose the deafult port for Django.
+# Exposes the deafult port for Django.
 EXPOSE 8000
 
-# Change to the new user for security reasons.
+# Changes to the new user for security reasons.
 USER saleor
