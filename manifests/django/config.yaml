@@ -7,9 +7,8 @@ data:
   # Debug. By default should be set to "False".
   DEBUG: "False"
 
-  # todo: need to understand how to change that with Ansible for full deployment.
   # A list of strings representing host, or domain names of client applications.
-  ALLOWED_HOSTS: 10.0.0.10,django
+  ALLOWED_HOSTS: 10.0.0.10,django,10.152.183.80
 
   # A list of strings representing host, or domain names of client applications that use Saleor as a backend.
   ALLOWED_CLIENT_HOSTS: 10.0.0.10,localhost,127.0.0.1
@@ -17,6 +16,7 @@ data:
   # Default broker URL.
   CELERY_BROKER_URL: redis://redis.redis:6379/
 
+  # todo: maybe need to change that, and give the dashboard ClusterIP with hostAliases.
   # Default Saleor Dashboard URL.
   DASHBOARD_URL: http://10.0.0.10:30090/
 

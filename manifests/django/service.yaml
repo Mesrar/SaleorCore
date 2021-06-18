@@ -7,7 +7,8 @@ metadata:
     app: saleor
     component: server
 spec:
-  type: NodePort
+  type: ClusterIP
+  clusterIP: 10.152.183.80
   selector:
     app: saleor
     component: server
@@ -16,4 +17,3 @@ spec:
       protocol: TCP
       port: 8000
       targetPort: 8000
-      nodePort: 30080
