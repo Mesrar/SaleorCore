@@ -65,6 +65,7 @@ spec:
           image: ariellahiany/saleor:latest
           imagePullPolicy: Always
           command: ["python", "manage.py", "collectstatic", "--noinput"]
+          # todo: need to give a password and a username for Redis.
           env:
             - name: DEBUG
               valueFrom:

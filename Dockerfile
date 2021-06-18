@@ -2,11 +2,11 @@
 FROM python:latest as builder
 
 # Updates and installs required Linux dependencies.
-RUN set -eux; \
-    apt-get -y update; \
-    apt-get -y upgrade; \
-    apt-get clean; \
-    rm -rf /var/lib/apt/lists/*
+RUN set -eux \
+    && apt-get -y update \
+    && apt-get -y upgrade \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Installs required Python dependencies.
 COPY requirements_dev.txt /saleor/
@@ -17,33 +17,35 @@ RUN pip install -r requirements_dev.txt
 FROM python:slim as release
 
 # Defines new group and user for security reasons.
-RUN groupadd -r saleor && useradd -r -g saleor saleor
+RUN groupadd -r saleor \
+    && useradd -r -g saleor saleor
 
 # Updates and installs required Linux dependencies.
-RUN set -eux; \
-    apt-get -y update; \
-    apt-get -y upgrade; \
-    apt-get install -y \
-      libcairo2 \
-      libgdk-pixbuf2.0-0 \
-      liblcms2-2 \
-      libopenjp2-7 \
-      libpango-1.0-0 \
-      libpangocairo-1.0-0 \
-      libpq5 \
-      libssl1.1 \
-      libtiff5 \
-      libwebp6 \
-      libxml2 \
-      mime-support \
-      nano \
-      shared-mime-info \
-    ; \
-  apt-get clean; \
-  rm -rf /var/lib/apt/lists/*
+RUN set -eux \
+    && apt-get -y update \
+    && apt-get -y upgrade \
+    && apt-get install -y \
+        libcairo2 \
+        libgdk-pixbuf2.0-0 \
+        liblcms2-2 \
+        libopenjp2-7 \
+        libpango-1.0-0 \
+        libpangocairo-1.0-0 \
+        libpq5 \
+        libssl1.1 \
+        libtiff5 \
+        libwebp6 \
+        libxml2 \
+        mime-support \
+        nano \
+        shared-mime-info \
+    \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Creates new directories for media and static files.
-RUN mkdir -p /saleor/media /saleor/static && chown -R saleor:saleor /saleor/
+RUN mkdir -p /saleor/media /saleor/static \
+    && chown -R saleor:saleor /saleor/
 
 # Copies Linux binaries, and Python packages from the main builder.
 COPY --from=builder /usr/local/bin/ /usr/local/bin/

@@ -24,7 +24,7 @@ spec:
         - name: beat
           image: ariellahiany/saleor:latest
           imagePullPolicy: Always
-          # todo: need to give password and username for Redis.
+          # todo: need to give a password and a username for Redis.
           env:
             - name: DEBUG
               valueFrom:
