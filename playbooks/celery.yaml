@@ -18,7 +18,7 @@
     state: present
     src: /home/arik/kubernetes/platform/saleor/manifests/celery/deployment.yaml
 
-#  - name: Apply Celery workers horizontal pod autoscaler manifest to the cluster.
-#    community.kubernetes.k8s:
-#      state: present
-#      src: /home/arik/kubernetes/platform/saleor/manifests/celery/scale.yaml
+- name: Apply Celery workers horizontal pod autoscaler manifest to the cluster.
+  community.kubernetes.k8s:
+    state: present
+    src: /home/arik/kubernetes/platform/saleor/manifests/celery/scale.yaml

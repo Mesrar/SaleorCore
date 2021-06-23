@@ -136,6 +136,11 @@ spec:
                 configMapKeyRef:
                   name: django
                   key: DASHBOARD_URL
+            - name: STOREFRONT_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: STOREFRONT_URL
             - name: SECRET_KEY
               valueFrom:
                 secretKeyRef:
@@ -156,8 +161,7 @@ spec:
                 secretKeyRef:
                   name: postgres
                   key: POSTGRES_PASSWORD
-          args: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-#          args: ["gunicorn", "--bind", ":8000", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker" ,"saleor.asgi:application"]
+          args: ["gunicorn", "--bind", ":8000", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker" ,"saleor.asgi:application"]
 # todo: need to create that with NFS(?)
 #          volumeMounts:
 #            - name: media

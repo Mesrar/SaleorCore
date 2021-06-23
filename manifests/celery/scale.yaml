@@ -1,4 +1,4 @@
-apiVersion: autoscaling/v1
+apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: celery
@@ -8,5 +8,17 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: celery
-  maxReplicas: 3
   minReplicas: 1
+  maxReplicas: 3
+  metrics:
+    - type: Object
+      object:
+        describedObject:
+          apiVersion: apps/v1
+          kind: Deployment
+          name: celery
+        metric:
+          name: celery_queue_length
+        target:
+          type: value
+          value: "3"

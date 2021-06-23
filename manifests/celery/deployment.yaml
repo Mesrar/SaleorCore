@@ -51,6 +51,11 @@ spec:
                 configMapKeyRef:
                   name: django
                   key: DASHBOARD_URL
+            - name: STOREFRONT_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: django
+                  key: STOREFRONT_URL
             - name: SECRET_KEY
               valueFrom:
                 secretKeyRef:
@@ -71,7 +76,7 @@ spec:
                 secretKeyRef:
                   name: postgres
                   key: POSTGRES_PASSWORD
-          args: ["celery", "-A", "saleor", "--app=saleor.celeryconf:app", "worker", "--loglevel=info"]
+          args: ["celery", "-A", "saleor", "--app=saleor.celeryconf:app", "worker", "-E" ,"--loglevel=info"]
 # todo: need to create that with NFS(?)
 #          volumeMounts:
 #            - name: media
