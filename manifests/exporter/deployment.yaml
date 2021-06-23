@@ -29,4 +29,4 @@ spec:
               protocol: TCP
               containerPort: 9540
           args:
-            - --broker-url redis://redis.redis:6379/
+            - --broker-url=redis://redis.redis:6379/
