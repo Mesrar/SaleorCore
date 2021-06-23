@@ -163,6 +163,7 @@ spec:
                   key: POSTGRES_PASSWORD
           args: ["gunicorn", "--bind", ":8000", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker" ,"saleor.asgi:application"]
 # todo: need to create that with NFS(?)
+# todo: need to give another container, of Nginx for media and static files.
 #          volumeMounts:
 #            - name: media
 #              mountPath: /saleor/media
