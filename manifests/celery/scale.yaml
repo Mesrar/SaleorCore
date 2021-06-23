@@ -20,5 +20,5 @@ spec:
         metric:
           name: celery_queue_length
         target:
-          type: value
-          value: "3"
+          type: Value
+          value: 3
