@@ -1,0 +1,40 @@
+name: Kubernetes Deploy
+
+on:
+  workflow_run:
+    workflows:
+      - "Docker Publish"
+    types:
+      - completed
+
+jobs:
+  kubernetes:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v2
+
+      - name: Login to Google Kubernetes Engine
+        id: login
+        uses: google-github-actions/get-gke-credentials@v0.2.1
+        with:
+          cluster_name: ${{ secrets.GKE_CLUSTER }}
+          location: ${{ secrets.GKE_ZONE }}
+          credentials: ${{ secrets.GKE_SA_KEY }}
+
+      # todo: need to rollup to the new version.
+      - name: Deployment
+        id: deployment
+        run: |
+          echo "hello world"
+
+      - name: Notification
+        id: notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_ICON_EMOJI: ":robot_face:"

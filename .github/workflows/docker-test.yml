@@ -7,8 +7,8 @@ on:
     paths-ignore:
       - "*.md"
       - ".github/workflows/*"
-      - "/manifests/*"
-      - "/playbooks/*"
+      - "**/manifests/*"
+      - "**/playbooks/*"
 
 jobs:
   test:
@@ -29,10 +29,10 @@ jobs:
             docker build . --file Dockerfile
           fi
 
-#      - name: Notification
-#        id: notification
-#        uses: rtCamp/action-slack-notify@v2
-#        env:
-#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-#          SLACK_COLOR: ${{ job.status }}
-#          SLACK_ICON_EMOJI: ":robot_face:"
+      - name: Notification
+        id: notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_ICON_EMOJI: ":robot_face:"

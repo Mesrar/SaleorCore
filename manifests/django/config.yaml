@@ -8,7 +8,7 @@ data:
   DEBUG: "False"
 
   # A list of strings representing host, or domain names of client applications.
-  ALLOWED_HOSTS: 10.0.0.10,django
+  ALLOWED_HOSTS: 10.0.0.10,localhost,django
 
   # A list of strings representing host, or domain names of client applications that use Saleor as a backend.
   ALLOWED_CLIENT_HOSTS: 10.0.0.10,localhost,127.0.0.1
@@ -17,7 +17,7 @@ data:
   CELERY_BROKER_URL: redis://redis.redis:6379/
 
   # Default Saleor Dashboard URL.
-  DASHBOARD_URL: http://10.0.0.10:30090/
+  DASHBOARD_URL: http://localhost:30090/
 
   # Default Saleor Storefront URL.
-  STOREFRONT_URL: http://10.0.0.10:30030/
+  STOREFRONT_URL: http://localhost:30030/
