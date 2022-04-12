@@ -1,5 +1,5 @@
 # Sets python:latest as the builder.
-FROM python:latest as builder
+FROM python:3.9 as builder
 
 # Updates and installs required Linux dependencies.
 RUN set -eux \
@@ -8,13 +8,15 @@ RUN set -eux \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+RUN ls
+
 # Installs required Python dependencies.
 COPY requirements_dev.txt /saleor/
 WORKDIR /saleor
 RUN pip install -r requirements_dev.txt
 
 # Sets python:slim as the release image.
-FROM python:slim as release
+FROM python:3.9-slim as release
 
 # Defines new group and user for security reasons.
 RUN groupadd -r saleor \
