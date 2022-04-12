@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: beat
-          image: ariellahiany/saleor:latest
+          image: mesrarbrand/saleor:latest
           imagePullPolicy: Always
           # todo: need to give a password and a username for Redis.
           env:

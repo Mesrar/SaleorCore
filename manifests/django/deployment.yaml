@@ -22,7 +22,7 @@ spec:
     spec:
       initContainers:
         - name: database
-          image: ariellahiany/saleor:latest
+          image: mesrarbrand/saleor:latest
           imagePullPolicy: Always
           command: ["python", "manage.py", "migrate"]
           env:
@@ -62,7 +62,7 @@ spec:
                   name: postgres
                   key: POSTGRES_PASSWORD
         - name: static
-          image: ariellahiany/saleor:latest
+          image: mesrarbrand/saleor:latest
           imagePullPolicy: Always
           command: ["python", "manage.py", "collectstatic", "--noinput"]
           # todo: need to give a password and a username for Redis.
@@ -104,7 +104,7 @@ spec:
                   key: POSTGRES_PASSWORD
       containers:
         - name: django
-          image: ariellahiany/saleor:latest
+          image: mesrarbrand/saleor:latest
           imagePullPolicy: Always
           ports:
             - name: django
