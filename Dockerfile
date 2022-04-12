@@ -48,8 +48,9 @@ RUN mkdir -p /saleor/media /saleor/static \
     && chown -R saleor:saleor /saleor/
 
 # Copies Linux binaries, and Python packages from the main builder.
-COPY --from=builder /usr/local/bin/ /usr/local/bin/
 COPY --from=builder /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages/
+COPY --from=builder /usr/local/bin/ /usr/local/bin/
+
 
 # Copies the source code from the host into the container.
 COPY --chown=saleor:saleor . /saleor
