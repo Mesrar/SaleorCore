@@ -8,7 +8,7 @@ data:
   DEBUG: "False"
 
   # A list of strings representing host, or domain names of client applications.
-  ALLOWED_HOSTS: 10.0.0.10,localhost,django
+  ALLOWED_HOSTS: 10.0.0.10,localhost,django,127.0.0.1
 
   # A list of strings representing host, or domain names of client applications that use Saleor as a backend.
   ALLOWED_CLIENT_HOSTS: 10.0.0.10,localhost,127.0.0.1
